@@ -1,0 +1,13 @@
+application: gdgkobe20150429
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /_ah/spi/.*
+  script: main.application
+
+libraries:
+- name: endpoints
+  version: 1.0
