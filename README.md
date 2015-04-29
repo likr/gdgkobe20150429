@@ -388,17 +388,14 @@ ListController.prototype.activate = function () {
 ```
 
 ```html:components/list/list.html
-var ListController = function (GApi) {
-  this.GApi = GApi;
-};
-
-ListController.prototype.activate = function () {
-  var self = this;
-  return self.GApi.execute('gdgkobe20150429', 'articles.query')
-    .then(function (response) {
-      self.articles = response.items;
-    });
-};
+<div class="panel panel-default" ng-repeat="article in list.articles">
+  <div class="panel-heading">{{article.title}}</div>
+  <div class="panel-body">
+    <p class="text-right"> by {{article.user}}</p>
+    <p>{{article.text}}</p>
+    <p class="text-right">{{article.created | date:'yyyy/MM/dd HH:mm'}}</p>
+  </div>
+</div>
 ```
 
 # Step 3 ログインフロー
