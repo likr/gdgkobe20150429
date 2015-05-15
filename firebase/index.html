@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Component Router ハンズオン</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+</head>
+<body ng-app="app" ng-controller="AppController as app">
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand">GDG Kobe</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="nav navbar-nav navbar-right" ng-if="app.authData">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{app.authData.uid}}<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a ng-click="app.logout()">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right" ng-if="!app.authData">
+        <li><a ng-click="app.login()">Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <ul class="nav nav-pills">
+    <li role="presentation"><a ng-link="list">Public</a></li>
+    <li role="presentation"><a ng-link="post">Member</a></li>
+  </ul>
+  <div class="row">
+    <div class="col-xs-9" ng-viewport="content"></div>
+    <div class="col-xs-3" ng-viewport="navigation"></div>
+  </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+<script src="https://cdn.firebase.com/libs/angularfire/1.1.1/angularfire.min.js"></script>
+<script src="router.es5.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
