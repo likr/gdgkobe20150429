@@ -1,0 +1,9 @@
+{
+  "firebase": "gdgkobe20150429-fb",
+  "public": ".",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}

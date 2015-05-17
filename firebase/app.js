@@ -12,7 +12,7 @@ var AppController = function ($router, auth) {
 };
 
 AppController.prototype.login = function () {
-  this.auth.$authAnonymously();
+  this.auth.$authWithOAuthPopup('google');
 };
 
 AppController.prototype.logout = function () {
@@ -93,7 +93,9 @@ PostController.prototype.submit = function () {
   this.articles
     .$add({
       title: this.title,
-      text: this.text
+      text: this.text,
+      user: this.auth.$getAuth().google.displayName,
+      created: Firebase.ServerValue.TIMESTAMP
     })
     .then(function (ref) {
       self.title = '';
@@ -119,17 +121,15 @@ UserController.prototype.canActivate = function () {
 angular.module('app', ['firebase', 'ngNewRouter']);
 
 angular.module('app')
-  .factory('ref', function () {
-    return new Firebase('https://gdgkobe20150429-fb.firebaseio.com/');
-  });
-
-angular.module('app')
-  .factory('auth', function ($firebaseAuth, ref) {
+  .factory('auth', function ($firebaseAuth) {
+    var ref = new Firebase('https://gdgkobe20150429-fb.firebaseio.com/');
     return $firebaseAuth(ref);
   });
 
 angular.module('app')
-  .factory('articles', function ($firebaseArray, ref) {
+  .factory('articles', function ($firebaseArray) {
+    var ref = new Firebase('https://gdgkobe20150429-fb.firebaseio.com/')
+      .orderByChild('created');
     return $firebaseArray(ref);
   });
 
